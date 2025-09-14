@@ -1,0 +1,9 @@
+<h2>Welcome, {{ auth.getUser().username }}</h2>
+<!--<button (click)="logout()">Logout</button>-->
+
+<h3>Your Challenges</h3>
+<ul>
+  <li *ngFor="let c of challenges">
+    {{ c.name }} - {{ c.description }}
+  </li>
+</ul>

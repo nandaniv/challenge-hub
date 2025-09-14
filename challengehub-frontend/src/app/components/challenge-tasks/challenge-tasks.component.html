@@ -1,0 +1,21 @@
+<h2 class="section-title">Tasks for Challenge #{{ challengeId }}</h2>
+
+<p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+<div *ngIf="tasks.length > 0" class="task-grid">
+  <div *ngFor="let task of tasks" class="task-card">
+    <h3 class="task-title">{{ task.name }}</h3>
+    <p class="task-description">{{ task.description }}</p>
+
+    <button
+      class="task-button"
+      (click)="markTaskCompleted(task.taskId)"
+      [disabled]="task.completedToday">
+      {{ task.completedToday ? 'Done ✅' : 'Mark as Done' }}
+    </button>
+  </div>
+</div>
+
+<div class="back-link">
+  <a routerLink="/dashboard">← Back to Dashboard</a>
+</div>

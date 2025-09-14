@@ -1,0 +1,36 @@
+<h2 class="section-title">Your Challenges</h2>
+
+<p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+
+<div class="challenge-grid">
+  <div *ngFor="let challenge of challenges" class="challenge-card">
+    <h3 class="challenge-title">{{ challenge.title }}</h3>
+    <p><strong>Streak:</strong> {{ challenge.currentStreak || 0 }} days</p>
+    <p>
+      <strong>Status:</strong>
+      <span
+        [ngClass]="{
+          'status-completed': challenge.status === 'Completed',
+          'status-inprogress': challenge.status === 'In Progress',
+          'status-notactivated': challenge.status === 'Not Activated'
+        }">
+        {{ challenge.status }}
+      </span>
+    </p>
+
+    <div class="button-group">
+      <button
+        class="task-button"
+        [routerLink]="['/challenge', challenge.challengeId, 'tasks']">
+        Show Tasks
+      </button>
+
+      <button
+        *ngIf="challenge.status === 'Not Activated'"
+        class="task-button activate-button"
+        (click)="activateChallenge(challenge.challengeId)">
+        Activate
+      </button>
+    </div>
+  </div>
+</div>
